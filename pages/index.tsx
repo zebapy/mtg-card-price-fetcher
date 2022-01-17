@@ -3,6 +3,11 @@ import { useEffect, useState } from "react";
 import { useCopyToClipboard } from "react-use";
 import { PriceResult } from "./api/prices";
 
+const meta = {
+  title: "Magic: the Gathering Price Fetcher",
+  description: "Paste a csv of card info, get prices back",
+};
+
 enum FetcherStatus {
   IDLE,
   LOADING,
@@ -87,23 +92,16 @@ export default function Home() {
   return (
     <div className="bg-gray-100 min-h-screen">
       <Head>
-        <title>MTG card price getter</title>
-        <meta
-          name="description"
-          content="Paste a csv of card info, get prices back"
-        />
+        <title>{meta.title}</title>
+        <meta name="description" content={meta.description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className="container p-12 max-w-4xl">
         <main className="">
-          <h1 className="font-bold text-4xl mb-2">
-            Magic: the Gathering Price Fetcher 🦉
-          </h1>
+          <h1 className="font-bold text-4xl mb-2">{meta.title} 🦉</h1>
 
-          <p className="text-xl text-gray-600 mb-4">
-            Paste a csv of MTG card info, get prices back
-          </p>
+          <p className="text-xl text-gray-600 mb-4">{meta.description}</p>
 
           <div className="space-y-6">
             <form onSubmit={onSubmit}>
