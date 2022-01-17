@@ -38,7 +38,7 @@ interface ScryfallCard {
   };
 }
 
-const sleep = (n = 1000) => new Promise((resolve) => setTimeout(resolve, n));
+const sleep = (n = 200) => new Promise((resolve) => setTimeout(resolve, n));
 
 async function getPrices(contents: string): Promise<PriceResult> {
   const records = parse(contents, {
