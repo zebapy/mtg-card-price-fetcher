@@ -6,19 +6,19 @@ I've been slowly selling my collection and wanted a simple way to get a list of 
 
 ## FAQ (that no one's asked yet)
 
-### why dont you just use _app x_ to track prices
+### Why dont you just use _app x_ to track prices?
 
 Originally I was using TCG player app to scan cards but from there I could not find anything easy to manage the list and get prices afterward.
 
-It looks like I can import into a collection, but their UI options (from whwere I found it) was clunky and not easy to swap out. Ultimately I want this collection in Google Sheets anyway.
+Yes, I was trying their 'collection' feature but the UI I found for this was limited and clunky.
 
 ### Why csv text field and not file upload?
 
 I didn't want to deal with file uploads on serverless nextjs so I went with a text field to paste into. I've been trying to do file upload on another Next project and it's more involved than a text field.
 
-### why can I only fetch prices for unique 100 cards?
+### Why can I only fetch prices for 100 cards?
 
-For now, I'm limiting the number of unique cards you can search by 100. I may add ip address limits too. I don't make scryfall sad by leting others use this and going nuts.
+For now, I'm limiting the number of cards you can search by 100. I may add ip address limits too. I don't want to make scryfall sad by letting others use this and going nuts.
 
 ---
 
