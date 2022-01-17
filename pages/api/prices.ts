@@ -27,6 +27,17 @@ export type PriceResult = {
   unfound_total: number;
 };
 
+interface ScryfallCard {
+  prices: {
+    usd: string;
+    usd_foil: string;
+    usd_etched: null;
+    eur: string;
+    eur_foil: string;
+    tix: string;
+  };
+}
+
 const sleep = (n = 1000) => new Promise((resolve) => setTimeout(resolve, n));
 
 async function getPrices(contents: string): Promise<PriceResult> {
@@ -80,7 +91,7 @@ async function getPrices(contents: string): Promise<PriceResult> {
         return;
       }
 
-      const card = await resp.json();
+      const card = (await resp.json()) as ScryfallCard;
 
       return {
         ...record,
