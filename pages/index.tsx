@@ -171,7 +171,8 @@ export default function Home() {
               className="text-purple-500 underline"
             >
               Scryfall API
-            </a>
+            </a>{" "}
+            though this is not a partner site
           </p>
 
           <p>Not affiliated with MTG Wizards of the Coast.</p>
