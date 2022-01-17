@@ -70,47 +70,45 @@ async function getPrices(contents: string): Promise<PriceResult> {
     );
   }
 
-  let unfound = [];
+  const found = [];
+  const unfound = [];
 
-  const output = await Promise.all(
-    records.map(async (record) => {
-      // fetch the card from scryfall
-      // GET https://api.scryfall.com/cards/xln/96
+  for (const record of records) {
+    // fetch the card from scryfall
+    // GET https://api.scryfall.com/cards/xln/96
 
-      const resp = await fetch(
-        `https://api.scryfall.com/cards/${record.set_code.toLowerCase()}/${
-          record.card_number
-        }`
-      );
+    const resp = await fetch(
+      `https://api.scryfall.com/cards/${record.set_code.toLowerCase()}/${
+        record.card_number
+      }`
+    );
 
-      // dont badger their api
-      await sleep();
+    // dont badger their api
+    await sleep();
 
-      if (resp.status !== 200) {
-        unfound.push(record);
-        return;
-      }
-
+    if (resp.status !== 200) {
+      unfound.push(record);
+    } else {
       const card = (await resp.json()) as ScryfallCard;
 
-      return {
+      const cardWithPrice = {
         ...record,
         price_usd: card.prices.usd,
         price_usd_foil: card.prices.usd_foil,
       };
-    })
-  );
 
-  const cleaned = output.filter((o) => o);
+      found.push(cardWithPrice);
+    }
+  }
 
-  if (cleaned.length === 0) {
+  if (found.length === 0) {
     throw new Error("Could not match prices for any cards");
   }
 
   return {
     total: records.length,
-    found: stringify(cleaned, { header: true }),
-    found_total: cleaned.length,
+    found: stringify(found, { header: true }),
+    found_total: found.length,
     unfound: stringify(unfound, { header: true }),
     unfound_total: unfound.length,
   };
